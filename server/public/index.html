@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Taskkeepertrackerofer</title>
+    <link rel="stylesheet" href="styles/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <script src="vendors/angular.min.js"></script>
+    <script src="scripts/client.js"></script>
+</head>
+
+<body ng-app="TaskApp" ng-controller="TaskController as vm" style="background-color: whitesmoke">
+    <section class="container h-100 d-flex" style="padding-top: 50px;margin-left:20%;margin-right:20%;">
+        <div class="form-group col-lg-8" style="margin-left: 20%">
+            <input type="text" name="todo" ng-model="vm.toDo.description" placeholder="New Task" />
+            <button class="btn" ng-click="vm.createToDo()">Add</button>
+        </div>
+    </section>
+    <section class="container h-100 d-flex" style="margin-left:20%;margin-right:20%;">
+        <div class="jumbotron col-lg-10" style="background-color: whitesmoke">
+            <table class="table table-striped text-center">
+                <tbody>
+                    <tr ng-repeat="task in vm.toDoList" ng-class="{'bg-success': task.completed}">
+                        <td><input type="checkbox" ng-model="task.completed" /></td>
+                        <td><input type="text" ng-model="task.description" /></td>
+                        <td>
+                            <button class="btn" ng-click="vm.editToDo(task)">Update</button>
+                            <button class="btn" ng-click="vm.deleteToDo(task)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+
+</html>

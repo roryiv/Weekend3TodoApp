@@ -14,8 +14,10 @@
 <body ng-app="TaskApp" ng-controller="TaskController as vm" style="background-color: whitesmoke">
     <section class="container h-100 d-flex" style="padding-top: 50px;margin-left:20%;margin-right:20%;">
         <div class="form-group col-lg-8" style="margin-left: 20%">
-            <input type="text" name="todo" ng-model="vm.toDo.description" placeholder="New Task" />
-            <button class="btn" ng-click="vm.createToDo()">Add</button>
+            <form ng-submit="vm.createToDo()">
+                <input type="text" name="todo" ng-model="vm.toDo.description" placeholder="New Task" required/>
+                <input class="btn" type="submit" value="Add" />
+            </form>
         </div>
     </section>
     <section class="container h-100 d-flex" style="margin-left:20%;margin-right:20%;">
@@ -23,7 +25,7 @@
             <table class="table table-striped text-center">
                 <tbody>
                     <tr ng-repeat="task in vm.toDoList" ng-class="{'bg-success': task.completed}">
-                        <td><input type="checkbox" ng-model="task.completed" /></td>
+                        <td><input type="checkbox" ng-model="task.completed" ng-click="vm.editToDo(task)" /></td>
                         <td><input type="text" ng-model="task.description" /></td>
                         <td>
                             <button class="btn" ng-click="vm.editToDo(task)">Update</button>

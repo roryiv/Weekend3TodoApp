@@ -25,7 +25,6 @@ router.post('/', (req, res) => {
 router.put('/', (req,res) => {
     Task.findByIdAndUpdate(req.body._id, req.body)
     .then(() => {
-        console.log(req.body);
         res.sendStatus(200);
     })
     .catch((error) => {

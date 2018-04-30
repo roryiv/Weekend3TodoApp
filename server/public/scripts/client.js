@@ -38,18 +38,20 @@ app.controller('TaskController', ['$http', function($http) {
     }
 
     self.deleteToDo = function(toDont) {
-        $http({
-            method: 'DELETE',
-            url: '/task',
-            params: toDont
-        })
-        .then(function(response) {
-            console.log('response from server on DELETE:',response);
-            self.getList();
-        })
-        .catch(function(error) {
-            console.log('error on /food DELETE',error);
-        });
+        if (confirm('Confirm deletion?')) {
+            $http({
+                method: 'DELETE',
+                url: '/task',
+                params: toDont
+            })
+            .then(function(response) {
+                console.log('response from server on DELETE:',response);
+                self.getList();
+            })
+            .catch(function(error) {
+                console.log('error on /food DELETE',error);
+            });
+        }
     }
 
     self.editToDo = function(updatedToDo) {
